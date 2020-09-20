@@ -1,0 +1,25 @@
+<div class="container ">
+    <div class="col-md-4 offset-md-4">
+        <div class="card">
+            <div class="body">
+                <h2>Agregar Inventario </h2>
+                <form  class="form-group" novalidate #f="ngForm">
+                    <label>Codigo</label>
+                    <input type="text" name="codigo" [(ngModel)]="inventario.codigo" required placeholder="Codigo" class="form-control" >
+                    <label>Tipo</label>
+                    <input type="text" name="tipo" [(ngModel)]="inventario.tipo" required placeholder="Tipo" class="form-control">
+                    <label>Descripcion</label>
+                    <input type="text" name="descripcion" [(ngModel)]="inventario.descripcion" placeholder="Descripcion" class="form-control">
+                    <label>Estado</label>
+                    <input type="text" name="estado" [(ngModel)]="inventario.estado" required placeholder="estado" class="form-control">
+                    <label>Departamento</label>
+                    <input type="text" name="departamento" [(ngModel)]="inventario.departamento" required placeholder="departamento" class="form-control">
+                    
+                    <button class="btn btn-success btn-block" (click)=" addInventario()" [disabled]="!f.valid">
+                        Guardar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

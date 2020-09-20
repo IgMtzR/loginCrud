@@ -1,0 +1,41 @@
+<header>
+    <div class="container align-middle">
+        <div class="col-12">
+            <table id="tInventarios" datatable [dtTrigger]="dtTrigger" [dtOptions]="dtOptions"
+                class="table table-hover table-condensed table-responsive-sm">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Codigo</th>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                        <th>Estado</th>
+                        <th>Departamento</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let inventario of inventarios">
+                        <td>{{inventario.id}}</td>
+                        <td>{{inventario.codigo}}</td>
+                        <td>{{inventario.tipo}}</td>
+                        <td>{{inventario.descripcion}}</td>
+                        <td>{{inventario.estado}}</td>
+                        <td>{{inventario.departamento}}</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" routerLink="/LoginCrud/inventarios/Edit/{{inventario.id}}" >
+                                <span class="fas fa-edit"></span>
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" (click)="deleteInventario(inventario.id)">
+                                <span class="fas fa-trash-alt"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</header>
