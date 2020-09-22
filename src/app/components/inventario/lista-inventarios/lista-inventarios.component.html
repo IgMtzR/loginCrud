@@ -1,41 +1,60 @@
-<header>
-    <div class="container align-middle">
-        <div class="col-12">
-            <table id="tInventarios" datatable [dtTrigger]="dtTrigger" [dtOptions]="dtOptions"
-                class="table table-hover table-condensed table-responsive-sm">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Codigo</th>
-                        <th>Tipo</th>
-                        <th>Descripción</th>
-                        <th>Estado</th>
-                        <th>Departamento</th>
-                        <th>Editar</th>
-                        <th>Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let inventario of inventarios">
-                        <td>{{inventario.id}}</td>
-                        <td>{{inventario.codigo}}</td>
-                        <td>{{inventario.tipo}}</td>
-                        <td>{{inventario.descripcion}}</td>
-                        <td>{{inventario.estado}}</td>
-                        <td>{{inventario.departamento}}</td>
-                        <td>
-                            <button class="btn btn-warning btn-sm" routerLink="/LoginCrud/inventarios/Edit/{{inventario.id}}" >
-                                <span class="fas fa-edit"></span>
-                            </button>
-                        </td>
-                        <td>
-                            <button class="btn btn-danger btn-sm" (click)="deleteInventario(inventario.id)">
-                                <span class="fas fa-trash-alt"></span>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+<app-menu></app-menu>
+<div>
+    <div class="row mt-4">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+            <div *ngIf="!isUser">
+                <button class="btn btn-outline-success" routerLink="/LoginCrud/inventarios/Add">
+                    <span class=" fas fa-plus-circle"></span> Agregar
+                </button>
+                <hr>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Registro Inventarios</h5>
+                    <table id="tInventarios" datatable [dtTrigger]="dtTrigger" [dtOptions]="dtOptions"
+                        class="table table-hover table-condensed table-responsive-sm">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Codigo</th>
+                                <th>Tipo</th>
+                                <th>Descripción</th>
+                                <th>Estado</th>
+                                <th>Departamento</th>
+                                <th *ngIf="!isUser">Editar</th>
+                                <th *ngIf="!isUser">Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let inventario of inventarios">
+                                <td>{{inventario.id}}</td>
+                                <td>{{inventario.codigo}}</td>
+                                <td>{{inventario.tipo}}</td>
+                                <td>{{inventario.descripcion}}</td>
+                                <td>{{inventario.estado}}</td>
+                                <td>{{inventario.departamento}}</td>
+                                <td *ngIf="!isUser">
+                                    <button class="btn  btn-outline-warning btn-sm"
+                                        routerLink="/LoginCrud/inventarios/Edit/{{inventario.id}}">
+                                        <span class="fas fa-edit"></span>
+                                    </button>
+                                </td>
+                                <td *ngIf="!isUser">
+                                    <button class="btn btn-outline-danger btn-sm"
+                                        (click)="deleteInventario(inventario.id)">
+                                        <span class="fas fa-trash-alt"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
         </div>
     </div>
-</header>
+    <app-footer></app-footer>
+</div>

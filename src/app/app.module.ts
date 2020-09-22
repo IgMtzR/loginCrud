@@ -16,6 +16,11 @@ import { HomeComponent } from './components/home/home.component';
 import { ListaInventariosComponent } from './components/inventario/lista-inventarios/lista-inventarios.component';
 import { AgregarInventarioComponent } from './components/inventario/agregar-inventario/agregar-inventario.component';
 import { EditarInventarioComponent } from './components/inventario/editar-inventario/editar-inventario.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegistrarComponent } from './components/auth/registrar/registrar.component';
+import { MenuComponent } from './components/comunes/menu/menu.component';
+import { tokenizar } from './service/intermediary.service';
+import { FooterComponent } from './components/comunes/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +29,10 @@ import { EditarInventarioComponent } from './components/inventario/editar-invent
     ListaInventariosComponent,
     AgregarInventarioComponent,
     EditarInventarioComponent,
+    LoginComponent,
+    RegistrarComponent,
+    MenuComponent,
+    FooterComponent,
     
   ],
   imports: [
@@ -36,7 +45,7 @@ import { EditarInventarioComponent } from './components/inventario/editar-invent
     DataTablesModule
     
   ],
-  providers: [],
+  providers: [tokenizar],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

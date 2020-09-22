@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { Inventario } from 'src/app/models/Inventario';
 import { InventarioService } from 'src/app/service/inventario.service';
+import { TokenService } from 'src/app/service/token.service';
 
 @Component({
   selector: 'app-lista-inventarios',
@@ -15,16 +16,23 @@ export class ListaInventariosComponent implements OnInit {
   inventarios: Inventario[];
   dtTrigger: Subject<any> = new Subject();
   dtOptions: DataTables.Settings = {};
+  roles: string[];
+  isUser = true;
   
   constructor(private inventarioService: InventarioService,
               private toastr: ToastrService,
-              private router: Router) { }
+              private router: Router,
+              private tokenService: TokenService) { }
 
   ngOnInit(): void {
     this.dataConfig()
     this.getAll();
-    
-    
+    this.roles = this.tokenService.getAutorities(); 
+    this.roles.forEach(rol=>{
+      if(rol == "ROLE_ADMIN" || rol == "ROLE_DEVELOPER"){
+        this.isUser = false;
+      }
+    })   
   }
   dataConfig(){
     this.dtOptions = {
@@ -70,9 +78,15 @@ export class ListaInventariosComponent implements OnInit {
           this.getAll()
       },
       err=>{
-        this.toastr.error(err.error.msg, "Error",{
-          timeOut:3000, positionClass:'toast-top-center'
-        });
+        if(err.error.msg==null){
+          this.toastr.error("Solo Privilegios: Administrador o Desarrollador", "No estas Autorizado",{
+            timeOut:3000, positionClass:'toast-top-center'
+          });
+        }else{
+          this.toastr.error(err.error.msg, "Error",{
+            timeOut:3000, positionClass:'toast-top-center'
+          });
+        }
       }
     )
   }

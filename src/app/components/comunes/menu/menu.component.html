@@ -1,0 +1,74 @@
+<header>
+  <div class="img_header flex">
+    <div class="row">
+        <div class="col-8" >
+            <ul>
+              <li>
+                <a routerLink="/">
+                  <img src="https://www.ssaver.gob.mx/wp-content/uploads/2019/02/logoencabezado.jpg" class="img-fluid" alt="Responsive image">
+                </a>
+              </li>
+            </ul>
+        </div>
+        <div class="col-4 d-flex " >
+            <ul class="list-group list-group-horizontal-lg">
+              <li class="nets">
+                <a href="https://www.facebook.com/SSALUDVeracruz/">
+                  <span class="fab fa-2x fa-facebook-f"></span>
+                </a>
+              </li>
+              <li class="nets">
+                <a href="https://twitter.com/ssaludveracruz?lang=es">
+                  <span class="fab fa-2x fa-twitter"></span>
+                </a>
+              </li>
+              <li class="nets">
+                <a routerLink="/">
+                  <span class="fab fa-2x fa-youtube"></span>
+                </a>
+              </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div>
+  <div class="row">
+      <div class="col">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light Format-Nav">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse " id="navbarNav">
+            <ul class="navbar-nav mr-auto ">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/">Inicio</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">
+                  Inventarios
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" routerLink="/LoginCrud/inventarios/List">Lista</a>
+                  <a class="dropdown-item" routerLink="/LoginCrud/inventarios/Add">Agregar</a>
+                </div>
+              </li>
+            </ul>
+    
+            <ul class="navbar-nav ml-auto ">
+                <li class="nav-item" *ngIf="!isLogged">
+                  <a class="nav-link" routerLink="/LoginCrud/Auth/Login">Iniciar Sessión</a>
+                </li>
+                <li class="nav-item" *ngIf="isLogged" (click)="onLogOut()">
+                    <a class="nav-link" href="#">Cerrar Sessión</a>
+                  </li>
+                
+              </ul>
+          </div>
+        </nav>
+      </div>
+  </div>
+</div>
+    
+  </header>

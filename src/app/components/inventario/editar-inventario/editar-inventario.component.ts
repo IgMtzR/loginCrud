@@ -29,7 +29,6 @@ export class EditarInventarioComponent implements OnInit {
     this.inventarioService.getOne(id).subscribe(
       data=>{
        this.inventario = data
-       console.log(this.inventario)
       },
       err=>{
         this.toastr.error(err.error.msg, "Error",{
@@ -48,9 +47,15 @@ export class EditarInventarioComponent implements OnInit {
         this.router.navigate(['/LoginCrud/inventarios/List'])
       },
       err=>{
-        this.toastr.error(err.error.msg, "Error",{
-          timeOut:3000, positionClass:'toast-top-center'
-        });
+        if(err.error.msg==null){
+          this.toastr.error("Solo Privilegios: Administrador o Desarrollador", "No estas Autorizado",{
+            timeOut:3000, positionClass:'toast-top-center'
+          });
+        }else{
+          this.toastr.error(err.error.msg, "Error",{
+            timeOut:3000, positionClass:'toast-top-center'
+          });
+        }
       }
     )
   }

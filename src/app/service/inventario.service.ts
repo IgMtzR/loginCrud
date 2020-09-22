@@ -33,7 +33,7 @@ export class InventarioService {
   }
 
   delete(id: number|string): Observable<any>{
-    return this.http.delete<any>(`${this.API_URL}//delete-Inventario/${id}`);
+    return this.http.delete<any>(`${this.API_URL}/delete-Inventario/${id}`);
   }
 
 }
